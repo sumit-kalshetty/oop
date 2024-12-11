@@ -1,0 +1,89 @@
+/*savefile as complex.java*/
+
+import java.util.*;
+public class complex
+{
+	double real;
+	double imag;
+	complex() {
+		real=0.0;
+		imag=0.0;
+	}
+	complex(double real, double imag)
+	{
+		this.real=real;
+		this.imag=imag;
+	}
+	public static complex addcomplex(complex c1, complex c2) {
+		complex temp= new complex();
+		temp.real=c1.real+c2.real;
+		temp.imag=c1.imag+c2.imag;
+		return temp;
+	}
+	public static complex divcomplex(complex c1, complex c2) {
+		complex temp2= new complex();
+		temp2.real=c1.real/c2.real;
+		temp2.imag=c1.imag/c2.imag;
+		return temp2;
+	}
+	public static complex mulcomplex(complex c1, complex c2) {
+		complex temp1= new complex();
+		temp1.real=c1.real*c2.real;
+		temp1.imag=c1.imag*c2.imag;
+		return temp1;
+	}
+	public static complex subcomplex(complex c1, complex c2) {
+		complex temp3= new complex();
+		temp3.real=c1.real-c2.real;
+		temp3.imag=c1.imag-c2.imag;
+		return temp3;
+	}
+	public static void main(String arg[])
+	{
+		double a,b,c,d;
+		int ch;
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter real part of number 1= ");
+		a= sc.nextDouble();
+		System.out.print("Enter imaginary part of number 1= ");
+		b= sc.nextDouble();
+		System.out.print("Enter real part of number 2= ");
+		c= sc.nextDouble();
+		System.out.print("Enter imaginary part of number 2= ");
+		d= sc.nextDouble();
+		System.out.println("1.Addition");
+		System.out.println("2.Subtraction");
+		System.out.println("3.Multiplication");
+		System.out.println("4.Division");
+		System.out.println("Enter your choice: ");
+		ch= sc.nextInt();
+		complex t1= new complex(a,b);
+		complex t2= new complex(c,d);
+		switch(ch)
+		{
+		case 1:
+			complex temp;
+			temp= addcomplex(t1,t2);
+			System.out.println("Addition is= "+temp.real+"+"+temp.imag+"i");
+			break;
+		case 2:
+			complex temp3;
+			temp3= subcomplex(t1,t2);
+			System.out.println("Subtraction is= "+temp3.real+"+"+temp3.imag+"i");
+			break;
+		case 3:
+			complex temp1;
+			temp1= mulcomplex(t1,t2);
+			System.out.println("Multiplication is= "+temp1.real+"+"+temp1.imag+"i");
+			break;
+		case 4:
+			complex temp2;
+			temp2= divcomplex(t1,t2);
+			System.out.println("Division is= "+temp2.real+"+"+temp2.imag+"i");
+			break;
+		default:
+			System.out.println("Invalid Choice");
+			break;
+		}
+	}
+}

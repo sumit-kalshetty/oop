@@ -1,0 +1,43 @@
+/*EXCEPTION HANDLING*/
+
+
+import java.util.*;
+class Main {
+	public static void main(String args[])
+	{
+		String num1, num2;
+		Scanner sc= new Scanner(System.in);
+		try {
+
+			System.out.print("Enter number 1: ");
+			num1= sc.next();
+			int no1= Integer.parseInt(num1);
+
+			System.out.print("Enter number 2: ");
+			num2= sc.next();
+			int no2= Integer.parseInt(num2);
+
+			int div= no1/no2;
+			System.out.println("\nDivison of two numbers is: "+div );
+			int arr[]= new int[] {no1, no2, div};
+			System.out.println("\nAvailable array index are 0-2");
+			System.out.print("Enter the index you want to search: ");
+			int i= sc.nextInt();
+			System.out.print("Value in array index "+i+" is: "+arr[i]);
+		}
+		catch(ArithmeticException ae)
+		{
+			System.out.print("\nWarning: ArithmeticExcpetion\n"+ae);
+		}
+		catch(NumberFormatException nfe)
+		{
+			System.out.print("\nWarning: NumberFormatExcpetion\n"+nfe);
+		}
+		catch(ArrayIndexOutOfBoundsException aoe)
+		{
+			System.out.println("\nWarning: ArrayIndexOutOfBoundException\n"+aoe);
+
+		}
+	}
+}
+

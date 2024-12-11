@@ -1,0 +1,42 @@
+/*DYNAMIC BINDING*/
+
+
+import java.util.*;
+abstract class Shape
+{
+	abstract void compute_area();
+	Scanner sc = new Scanner(System.in);
+}
+class Triangle extends Shape {
+	double base, height;
+	Triangle() {
+		System.out.print("Enter base of Triangle: ");
+		base = sc.nextDouble();
+		System.out.print("Enter height of Triangle: ");
+		height = sc.nextDouble();
+	}
+	void compute_area() {
+		System.out.println("Area of Triangle = " + (0.5 * base * height));
+	}
+
+}
+class Rectangle extends Shape {
+	double length, breadth;
+	Rectangle() {
+		System.out.print("Enter length of Rectangle: ");
+		length = sc.nextDouble();
+		System.out.print("Enter breadth of Rectangle: ");
+		breadth = sc.nextDouble();
+	}
+	void compute_area() {
+		System.out.println("Area of Rectangle = " + (length * breadth));
+	}
+}
+public class Main {
+	public static void main(String[] args) {
+		Shape a1 = new Triangle();
+		a1.compute_area();
+		Shape a2 = new Rectangle();
+		a2.compute_area();
+	}
+}

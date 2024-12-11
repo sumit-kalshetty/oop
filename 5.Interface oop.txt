@@ -1,0 +1,166 @@
+/*5.INTERFACE*/
+
+
+import java.util.*;
+interface Vehicle {
+	void gear_change();
+	void apply_brakes();
+	void speed_up();
+}
+class car implements Vehicle {
+	int speed = 0 ;
+	int gear = 0 ;
+	int max_speed= 140 ;
+	int max_gear= 6 ;
+	Scanner s1 = new Scanner(System.in);
+	public void gear_change() {
+		System.out.println("For Car:");
+		System.out.println("Enter the desired gear ");
+		int g = s1.nextInt();
+		if (g > 0 && g <=max_gear) {
+			gear = g ;
+			System.out.println("Current gear is "+gear);
+		}
+		else {
+			System.out.println(" Invalid Gear" );
+		}
+	}
+	public void speed_up() {
+		System.out.println("Enter speed ");
+		int s = s1.nextInt();
+		if (s > 0 && s <= max_speed) {
+			speed = s ;
+			System.out.println("Current speed is "+speed);
+		}
+		else {
+			System.out.println("Speed out of range");
+		}
+	}
+	public void apply_brakes() {
+		System.out.println("Enter reason you are applying brakes\n1:reduce speed \t  2:stop");
+		int a = s1.nextInt();
+		if (a==1) {
+			speed = 30;
+			gear = 1;
+			System.out.println("Speed is reduced to "+speed+" gear is "+gear);
+		}
+		else if (a == 2) {
+			speed = 0;
+			gear = 0;
+			System.out.println("Stopping vehicle");
+		}
+		else {
+			System.out.println("OOOPS ONLY TWO CHOICES");
+		}
+	}
+}
+class Bike implements Vehicle {
+	int speed = 0 ;
+	int gear = 0 ;
+	int max_speed= 120 ;
+	int max_gear= 5 ;
+	Scanner s1 = new Scanner(System.in);
+	public void gear_change() {
+		System.out.println("\nFor Bike:");
+		System.out.println("Enter the desired gear ");
+		int g = s1.nextInt();
+		if (g > 0 && g <= max_gear) {
+			gear = g ;
+			System.out.println("Current gear is : "+gear);
+		}
+		else {
+			System.out.println("Unable to change gear");
+		}
+	}
+	public void speed_up() {
+		System.out.println("Enter speed ");
+		int s = s1.nextInt();
+		if (s > 0 && s <= max_speed) {
+			speed = s ;
+			System.out.println("current speed is "+speed);
+		}
+		else {
+			System.out.println("speed not in range");
+		}
+	}
+	public void apply_brakes() {
+		System.out.println("Enter reason you are applying brakes\n1:reduce speed \t  2:stop");
+		int a = s1.nextInt();
+		if (a==1) {
+			speed = 30;
+			gear = 1;
+			System.out.println("Speed is reduced to "+speed+" gear is "+gear);
+		}
+		else if (a == 2) {
+			speed = 0;
+			gear = 0;
+			System.out.println("Stopping vehicle");
+		}
+		else {
+			System.out.println("OOOPS ONLY TWO CHOICES!!!!!!!!!!!!");
+		}
+	}
+}
+class Bicycle implements Vehicle {
+	int speed = 0 ;
+	int gear = 0 ;
+	int max_speed= 30 ;
+	int max_gear= 4;
+	Scanner s1 = new Scanner(System.in);
+	public void gear_change() {
+		System.out.println("\nFor Bicycle:");
+		System.out.println("Enter the desired gear ");
+		int g = s1.nextInt();
+		if (g > 0 && g <= max_gear) {
+			gear = g ;
+			System.out.println("current gear is : "+gear);
+		}
+		else {
+			System.out.println("Unable to change gear");
+		}
+	}
+	public void speed_up() {
+		System.out.println("Enter speed ");
+		int s = s1.nextInt();
+		if (s > 0 && s <= max_speed) {
+			speed = s ;
+			System.out.println("current speed is "+speed);
+		}
+		else {
+			System.out.println("unable to change speed ");
+		}
+	}
+	public void apply_brakes() {
+		System.out.println("Enter reason you are applying brakes\n1:reduce speed \t  2:stop");
+		int a = s1.nextInt();
+		if (a==1) {
+			speed = 10;
+			gear = 1;
+			System.out.println("Speed is reduced to "+speed+" gear is "+gear);
+		}
+		else if (a == 2) {
+			speed = 0;
+			gear = 0;
+			System.out.println("Stopping vehicle");
+		}
+		else {
+			System.out.println("OOOPS ONLY TWO CHOICES");
+		}
+	}
+}
+public class Main {
+	public static void main(String args[]) {
+		car c = new car();
+		c.gear_change();
+		c.speed_up();
+		c.apply_brakes();
+		Bike b = new Bike();
+		b.gear_change();
+		b.speed_up();
+		b.apply_brakes();
+		Bicycle by = new Bicycle();
+		by.gear_change();
+		by.speed_up();
+		by.apply_brakes();
+	}
+}

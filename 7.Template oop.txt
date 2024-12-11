@@ -1,0 +1,61 @@
+/*TEMPLATE*/
+
+
+import java.util.*;
+class Main {
+	public static void even_odd(int x) {
+		int n=x;
+		if((int)n%2==0) {
+			System.out.println(n+" is an Even Number");
+		}
+		else {
+			System.out.println(n+" is an Odd Number");
+		}
+	}
+	public static void prime_composite(int x) {
+		int n=x;
+		int count = 0;
+		for(int i=2; i<n; i++) {
+			if((int)n%i==0) {
+				count = 1;
+				break;
+			}
+		}
+
+		if(count==0) {
+			System.out.println(n+" is a Prime Number");
+		}
+		else {
+			System.out.println(n+" is a Composite Number");
+		}
+	}
+	public static void reverse(int x) {
+		int n = x;
+		int d;
+		int rev=0;
+		while(n!=0) {
+			d = n%10;
+			rev = (rev*10)+d;
+			n = n/10;
+		}
+
+		if (x==rev) {
+			System.out.println("Reverse of "+x+" is "+rev);
+			System.out.println("Therefore it is a Palindrome");
+		}
+		else {
+			System.out.println("Reverse of "+x+" is "+rev);
+			System.out.println("Therefore it is not a Palindrome");
+		}
+
+	}
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter any number:\t");
+		int a = sc.nextInt();
+		Main u = new Main();
+		u.even_odd(a);
+		u.prime_composite(a);
+		u.reverse(a);
+	}
+}

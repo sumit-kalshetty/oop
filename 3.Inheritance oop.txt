@@ -1,0 +1,113 @@
+/*INHERITANCE*/
+
+import java.util.*;
+class Employee {
+	String Emp_Name;
+	int Emp_Id;
+	String Address;
+	String Mail_Id;
+	long Mob_no;
+	double BP, DA, HRA, PF, SCF, GS, NS;
+	Scanner sc = new Scanner(System.in);
+	void data() {
+		System.out.println("Enter Id:");
+		Emp_Id = sc.nextInt();
+		System.out.println("Enter Name:");
+		Emp_Name = sc.next();
+		System.out.println("Enter Address:");
+		Address = sc.next();
+		System.out.println("Enter Mail id:");
+		Mail_Id = sc.next();
+		System.out.println("Enter Mob_no:");
+		Mob_no = sc.nextLong();
+	}
+	void calculate() {
+		DA = BP * 0.97;
+		HRA = BP * 0.10;
+		PF = BP * 0.12;
+		SCF = BP * 0.001;
+		GS = BP + DA + HRA + PF + SCF;
+		NS = BP + DA + HRA - PF - SCF;
+	}
+	void display() {
+		System.out.println("========================\n \tEmployee Details \n===========================");
+		System.out.println("Employee Name: " + Emp_Name);
+		System.out.println("Employee Id: " + Emp_Id);
+		System.out.println("Employee Address: " + Address);
+		System.out.println("Employee Mail Id: " + Mail_Id);
+		System.out.println("Employee Mobile No: " + Mob_no);
+		System.out.println("========================\n \tPAY SLIP \n===========================");
+		System.out.println("Basic Pay = " + BP);
+		System.out.println("DA = " + DA);
+		System.out.println("HRA = " + HRA);
+		System.out.println("PF = " + PF);
+		System.out.println("SCF = " + SCF);
+		System.out.println("GROSS SALARY = " + GS);
+		System.out.println("NET SALARY = " + NS);
+	}
+}
+class Programmer extends Employee {
+	Scanner s1 = new Scanner(System.in);
+	Programmer() {
+		System.out.println("Enter Basic Pay for Programmer:");
+		BP = s1.nextDouble();
+		super.data();
+		calculate();
+	}
+}
+class Team_lead extends Employee {
+	Scanner s2 = new Scanner(System.in);
+	Team_lead() {
+		System.out.println("Enter Basic Pay for Team_lead:");
+		BP = s2.nextDouble();
+		super.data();
+		calculate();
+	}
+}
+class Assistant_Project_Manager extends Employee {
+	Scanner s3 = new Scanner(System.in);
+	Assistant_Project_Manager() {
+		System.out.println("Enter Basic Pay for Assistant_Project_Manager:");
+		BP = s3.nextDouble();
+		super.data();
+		calculate();
+	}
+}
+class ProjectManager extends Employee {
+	Scanner s4 = new Scanner(System.in);
+	ProjectManager() {
+		System.out.println("Enter Basic PayProjectManager:");
+		BP = s4.nextDouble();
+		super.data();
+		calculate();
+	}
+}
+public class Main {
+	public static void main(String args[]) {
+		int choice;
+		Scanner sf = new Scanner(System.in);
+		System.out.print("Enter Choice\n1: Programmer\n2: Team lead\n3:  Asst Project Manager\n4: Project Manager\nchoice is :\t");
+		choice = sf.nextInt();
+		switch(choice) {
+		case 1:
+			Programmer p = new Programmer();
+			p.display();
+			break;
+		case 2:
+			Team_lead t = new Team_lead();
+			t.display();
+			break;
+		case 3:
+			Assistant_Project_Manager ap = new
+			Assistant_Project_Manager();
+			ap.display();
+			break;
+		case 4:
+			ProjectManager pm = new ProjectManager();
+			pm.display();
+			break;
+		default:
+			System.out.println("Invalid choice!");
+		}
+	}
+}

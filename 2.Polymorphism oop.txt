@@ -1,0 +1,169 @@
+/*POLYMORPHISM*/
+
+import java.util.Scanner;
+class Publication {
+    double price;
+    String title;
+    int copies;
+    static double total; // Changed total to static to keep track of total sales
+
+    Scanner sc = new Scanner(System.in); // Scanner class object
+
+    public void setTitle(String title) {
+        this.title = title; // setter method for title
+    }
+
+    public void setCopies(int copies) {
+        this.copies = copies; // setter method for copies
+    }
+
+    public String getTitle() {
+        return title; // getter method for title
+    }
+
+    public int getCopies() {
+        return copies; // getter method for copies
+    }
+
+    public double getPrice() {
+        return price; // getter method for price
+    }
+
+    void readPubl() { // read or input method for common data members of magazine and book class
+        System.out.print("Enter title: ");
+        title = sc.next();
+        System.out.print("Enter price: ");
+        price = sc.nextDouble();
+        System.out.print("Enter copies: ");
+        copies = sc.nextInt();
+    }
+
+    void display() { // display method for common data members of book and magazine class
+        System.out.print(title + "\t" + price + "\t" + copies);
+    }
+
+    void saleCopy(int number) { // common method to sale book or magazine and generate bill
+        if (number <= copies) { // if customer needed copies are less than available
+            copies -= number;
+            total += number * price;
+            System.out.println("\tYOU PURCHASED " + number + " COPIES \n\tYOU HAVE TO PAY: " + (price * number));
+        } else { // if customer needs copies more than available in stock
+            System.out.println("INSUFFICIENT STOCK!!!!!!!!!");
+        }
+    }
+}
+
+class Book extends Publication {
+    String author;
+
+    void orderCopies(int number) { // increase available copies of book by ordering
+        int x = getCopies() + number;
+        setCopies(x); // as data members are private, we access them with the help of methods
+        System.out.println("\n\tORDER SUCCESSFUL....");
+        System.out.println("\tCOPIES AVAILABLE: " + x);
+    }
+
+    void readBook() { // method calling read method of publication class and also reading author
+        readPubl();
+        System.out.print("Enter author of the book: ");
+        author = sc.next();
+    }
+
+    void displayBook() {
+        System.out.println("title \tprice \tcopies \tauthor");
+        display(); // call to display defined in publication class
+        System.out.println("\t" + author);
+    }
+}
+
+class Magazine extends Publication {
+    int orderQty;
+    String issueDate;
+
+    void receiveIssue(String newIssueDate) { // method to issue new or upgraded magazine
+        System.out.println("ENTER NEW COPIES ORDERED: ");
+        orderQty = sc.nextInt();
+        setCopies(orderQty); // setting values to copies by setter method
+        issueDate = newIssueDate;
+        System.out.println("\tTHE MAGAZINE " + getTitle() + "\n\tWITH ISSUE DATE " + issueDate + " AVAILABLE");
+    }
+
+    void readMag() { // method to read or input magazine details
+        readPubl(); // call to read method defined in publication class
+        System.out.print("Enter the current issue date [dd/mm/yyyy]: ");
+        issueDate = sc.next();
+    }
+
+    void displayMag() { // display method to display magazine details
+        System.out.println("title \tprice \tcopies \tdate");
+        display();
+        System.out.println("\t" + issueDate);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Publication pub = new Publication();
+        Book book = new Book();
+        Magazine mag = new Magazine();
+
+        int choice;
+        do {
+            System.out.println("\nChoose an option:");
+            System.out.println("1. Add Book");
+            System.out.println("2. Add Magazine");
+            System.out.println("3. Display Book");
+            System.out.println("4. Display Magazine");
+            System.out.println("5. Order Copies (Book)");
+            System.out.println("6. Sell Copies (Book or Magazine)");
+            System.out.println("7. Receive New Magazine Issue");
+            System.out.println("8. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    book.readBook();
+                    break;
+                case 2:
+                    mag.readMag();
+                    break;
+                case 3:
+                    book.displayBook();
+                    break;
+                case 4:
+                    mag.displayMag();
+                    break;
+                case 5:
+                    System.out.print("Enter number of copies to order: ");
+                    int orderNum = sc.nextInt();
+                    book.orderCopies(orderNum);
+                    break;
+                case 6:
+                    System.out.print("Enter number of copies to sell: ");
+                    int sellNum = sc.nextInt();
+                    System.out.print("Is it a book (1) or magazine (2)?: ");
+                    int type = sc.nextInt();
+                    if (type == 1) {
+                        book.saleCopy(sellNum);
+                    } else if (type == 2) {
+                        mag.saleCopy(sellNum);
+                    }
+                    break;
+                case 7:
+                    System.out.print("Enter new issue date [dd/mm/yyyy]: ");
+                    String newIssueDate = sc.next();
+                    mag.receiveIssue(newIssueDate);
+                    break;
+                case 8:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        } while (choice != 8);
+
+        sc.close();
+    }
+}
